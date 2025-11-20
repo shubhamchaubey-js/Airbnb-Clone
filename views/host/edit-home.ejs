@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Home</title>
+    <link rel="stylesheet" href="/css/global.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="add-home-heading">
+        <%= editing ? "Edit" : "Register"%> Your Home
+      </h1>
+      <a href="/" class="nav-logo">Back To Home</a>
+    </header>
+    <main>
+      <form
+        class="inputForm"
+        action="/host/<%= editing ? 'edit-home' : 'add-home' %>"
+        method="POST"
+      >
+        <input type="hidden" name="id" value="<%= editing ? home.id  : '' %>" />
+        <input
+          type="text"
+          name="houseName"
+          placeholder="Enter Name of Your House"
+          value="<%= editing && home ? home.houseName : '' %>"
+          required
+        />
+
+        <input
+          type="number"
+          name="pricePerNight"
+          placeholder="Price Per Night"
+          value="<%= editing && home ? home.pricePerNight : '' %>"
+          required
+        />
+
+        <input
+          type="number"
+          name="rating"
+          min="1"
+          max="5"
+          placeholder="Rating"
+          value="<%= editing && home ? home.rating : '' %>"
+          required
+        />
+
+        <input
+          type="text"
+          name="location"
+          placeholder="Enter Your Location"
+          value="<%= editing && home ? home.location : '' %>"
+          required
+        />
+
+        <label for="photo">Enter Image Link:</label><br />
+        <input
+          type="url"
+          id="photo"
+          name="photo"
+          placeholder="https://example.com/image.jpg"
+          value="<%= editing && home ? home.photo : '' %>"
+          required
+        />
+        <input
+          type="text"
+          name="description"
+          placeholder="Description"
+          value="<%= editing && home ? home.description : '' %>"
+          required
+        />
+
+        <input type="submit" value="<%= editing ? 'Update' : 'Register' %>" />
+      </form>
+    </main>
+  </body>
+</html>

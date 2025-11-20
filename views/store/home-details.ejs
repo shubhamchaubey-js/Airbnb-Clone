@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Details</title>
+    <link rel="stylesheet" href="/css/global.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="hea">Details of <%= home.houseName %></h1>
+      <a href="/" class="nav-logo">Back To Home</a>
+    </header>
+    <li class="home-item">
+      <div class="home-card">
+        <img
+          src="<%= home.photo %>"
+          alt="<%= home.houseName %>"
+          class="home-photo"
+        />
+
+        <div class="home-info">
+          <h2 class="home-title">Name: <%= home.houseName %></h2>
+          <p class="home-location">📍Place: <%= home.location %></p>
+          <p class="home-price">💰Price: ₹<%= home.pricePerNight %> / night</p>
+          <p class="home-rating">⭐Rating: <%= home.rating %> Out of 5</p>
+          <p class="home-rating">✨Decription: <%= home.description %></p>
+        </div>
+        <%- include('../partials/favorite') %>
+      </div>
+    </li>
+  </body>
+</html>

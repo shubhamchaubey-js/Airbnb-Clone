@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <link rel="stylesheet" href="/css/global.css" />
+  </head>
+  <body>
+    <!-- 🌐 Header Navigation -->
+    <header class="main-header">
+      <nav class="navbar">
+        <a href="/" class="nav-logo">airBnB</a>
+        <ul class="nav-links">
+          <li><a href="/homes">Home-List</a></li>
+          <li><a href="/favorite-list">Favorites</a></li>
+          <li><a href="/bookings">Bookings</a></li>
+          <li><a href="/host/host-home-list">Add Host Home</a></li>
+          <li><a href="/host/add-home">Add New Home</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- 🏡 Main Content -->
+    <main>
+      <h1 class="add-home-heading">Welcome to airBnB Index Page</h1>
+
+      <ul class="home-list">
+        <% allHouseName.forEach(home => { %>
+        <li class="home-item">
+          <div class="home-card">
+            <img
+              src="<%= home.photo %>"
+              alt="<%= home.houseName %>"
+              class="home-photo"
+            />
+            <div class="home-info">
+              <h2 class="home-title">🏠 <%= home.houseName %></h2>
+              <p class="home-location">📍 <%= home.location %></p>
+              <p class="home-price">💰 ₹<%= home.pricePerNight %> / night</p>
+              <p class="home-rating">⭐ <%= home.rating %> / 5</p>
+              <button class="book-btn">Book Now</button>
+            </div>
+          </div>
+        </li>
+        <% }); %>
+      </ul>
+    </main>
+  </body>
+</html>

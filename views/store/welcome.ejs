@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <link rel="stylesheet" href="/css/global.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <h1 class="add-home-heading">Here are our Registered Homes:</h1>
+      <a href="/" class="nav-logo">Back To Home</a>
+    </header>
+
+    <main>
+      <ul class="home-list">
+        <% allHouseName.forEach(home => { %>
+        <li class="home-item">
+          <div class="home-card">
+            <img
+              src="<%= home.photo %>"
+              alt="<%= home.houseName %>"
+              class="home-photo"
+            />
+
+            <div class="home-info">
+              <h2 class="home-title">Name: <%= home.houseName %></h2>
+              <p class="home-location">📍Place: <%= home.location %></p>
+              <p class="home-price">
+                💰Price: ₹<%= home.pricePerNight %> / night
+              </p>
+              <p class="home-rating">⭐Rating: <%= home.rating %> Out of 5</p>
+              <%- include('../partials/favorite',{home: home}) %>
+              <a class="id-link-details" href="/homes/<%= home.id%>">Details</a>
+            </div>
+          </div>
+        </li>
+        <% }); %>
+      </ul>
+    </main>
+  </body>
+</html>
