@@ -32,11 +32,11 @@
               <p class="home-rating">⭐Rating: <%= home.rating %> Out of 5</p>
 
               <a
-                href="/host/edit-home/<%=home.id%>?editing=true"
+                href="/host/edit-home/<%=home._id%>?editing=true"
                 class="edit-btn"
                 >Edit</a
               >
-              <form action="/host/delete-home<%= home.id%>" method="post">
+              <form action="/host/delete-home<%= home._id%>" method="post">
                 <button type="submit" class="delete-btn">Delete</button>
               </form>
             </div>

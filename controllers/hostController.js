@@ -12,8 +12,7 @@ exports.getAddHome = (req, res, next) => {
 exports.getEditHome = (req, res, next) => {
   const homeId = req.params.homeId;
   const editing = req.query.editing === "true";
-  Home.findById(homeId).then(([homes]) => {
-    const home = homes[0];
+  Home.findById(homeId).then((home) => {
     if (!home) {
       console.log("Home not Found for Editing");
       return res.redirect("/host/host-home-list");
@@ -27,7 +26,7 @@ exports.getEditHome = (req, res, next) => {
   });
 };
 exports.getHostHomes = (req, res, next) => {
-  Home.fetchAll().then(([allHouseName]) =>
+  Home.fetchAll().then((allHouseName) =>
     res.render("host/host-home-list", { allHouseName: allHouseName })
   );
 };
@@ -42,7 +41,9 @@ exports.postAddHome = (req, res, next) => {
     photo,
     description
   );
-  home.save();
+  home.save().then(() => {
+    console.log("Home Saved Successfully");
+  });
   res.redirect("/host/host-home-list"); // ✅ Correct redirect URL
 };
 
@@ -58,8 +59,9 @@ exports.postEditHome = (req, res, next) => {
     description,
     id
   );
-
-  home.save();
+  home.save().then((result) => {
+    console.log("Home Updated", result);
+  });
   res.redirect("/host/host-home-list");
 };
 

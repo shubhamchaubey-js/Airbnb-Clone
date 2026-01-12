@@ -4,6 +4,7 @@ const storeRouter = require("./routes/storeRouter");
 const { hostRouter } = require("./routes/hostRouter");
 const rootDir = require("./utils/pathUtil");
 const { err } = require("./controllers/err");
+const { MongoConnect } = require("./utils/databaseUtil");
 
 const app = express();
 
@@ -17,6 +18,8 @@ app.use(express.static(path.join(rootDir, "public"))); // Serving static files
 app.use(err);
 
 const PORT = 4000;
-app.listen(PORT, () => {
-  console.log(`Server Running on http://localhost:${PORT}`);
+MongoConnect(() => {
+  app.listen(PORT, () => {
+    console.log(`Server Running on http://localhost:${PORT}`);
+  });
 });

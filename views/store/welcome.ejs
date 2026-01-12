@@ -31,7 +31,9 @@
               </p>
               <p class="home-rating">⭐Rating: <%= home.rating %> Out of 5</p>
               <%- include('../partials/favorite',{home: home}) %>
-              <a class="id-link-details" href="/homes/<%= home.id%>">Details</a>
+              <a class="id-link-details" href="/homes/<%= home._id%>"
+                >Details</a
+              >
             </div>
           </div>
         </li>

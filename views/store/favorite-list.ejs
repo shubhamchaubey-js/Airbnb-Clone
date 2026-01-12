@@ -30,7 +30,7 @@
                 💰Price: ₹<%= home.pricePerNight %> / night
               </p>
               <p class="home-rating">⭐Rating: <%= home.rating %> Out of 5</p>
-              <form action="/favorites/delete/<%= home.id %>" method="post">
+              <form action="/favorites/delete/<%= home._id %>" method="post">
                 <button class="delete-btn" type="submit">
                   Remove From Favorites
                 </button>
