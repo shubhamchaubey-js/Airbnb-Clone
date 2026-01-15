@@ -26,21 +26,21 @@ exports.getEditHome = (req, res, next) => {
   });
 };
 exports.getHostHomes = (req, res, next) => {
-  Home.fetchAll().then((allHouseName) =>
+  Home.find().then((allHouseName) =>
     res.render("host/host-home-list", { allHouseName: allHouseName })
   );
 };
 exports.postAddHome = (req, res, next) => {
   const { houseName, pricePerNight, location, rating, photo, description } =
     req.body;
-  const home = new Home(
+  const home = new Home({
     houseName,
     pricePerNight,
     location,
     rating,
     photo,
-    description
-  );
+    description,
+  });
   home.save().then(() => {
     console.log("Home Saved Successfully");
   });
@@ -50,25 +50,24 @@ exports.postAddHome = (req, res, next) => {
 exports.postEditHome = (req, res, next) => {
   const { id, houseName, pricePerNight, location, rating, photo, description } =
     req.body;
-  const home = new Home(
-    houseName,
-    pricePerNight,
-    location,
-    rating,
-    photo,
-    description,
-    id
-  );
-  home.save().then((result) => {
-    console.log("Home Updated", result);
+  Home.findById(id).then((home) => {
+    home.houseName = houseName;
+    home.pricePerNight = pricePerNight;
+    home.location = location;
+    home.rating = rating;
+    home.photo = photo;
+    home.description = description;
+    home.save().then((result) => {
+      console.log("Home Updated", result);
+    });
+    res.redirect("/host/host-home-list");
   });
-  res.redirect("/host/host-home-list");
 };
 
 exports.postDeleteHome = (req, res, next) => {
   const homeId = req.params.homeId;
   console.log("Home id ", homeId);
-  Home.deleteById(homeId)
+  Home.findByIdAndDelete(homeId)
     .then(() => {
       res.redirect("/host/host-home-list");
     })
